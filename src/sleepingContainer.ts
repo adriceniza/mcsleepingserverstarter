@@ -67,8 +67,6 @@ export class SleepingContainer implements ISleepingServer {
       }
     }
 
-    console.log(this.settings);
-
     if (this.settings.discordWebhookUrl) {
       this.discord = new SleepingDiscord(this.settings);
     }
