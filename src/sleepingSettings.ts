@@ -18,7 +18,6 @@ export type Settings = {
   serverName: string;
   serverMOTD?: string;
   serverPort: number;
-  bedrockPort?: number;
   maxPlayers: number;
   loginMessage: string;
   serverOnlineMode: boolean;
@@ -36,11 +35,11 @@ export type Settings = {
   version?: string | false;
   favIcon?: string;
   favIconPath?: string;
-  discordWebhook?: {
-    url: string;
-    name?: string;
-    avatar?: string;
-  };
+  discordWebhookUrl?: string;
+  discordWebhookName?: string;
+  discordWebhookAvatar?: string;
+  discordWebhookWokeUpMessage?: string;
+  discordWebhookStopMessage?: string;
   blackListedAddress?: string[];
   whiteListedNames?: string[];
   useWhitelistFile: boolean;

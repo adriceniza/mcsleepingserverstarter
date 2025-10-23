@@ -14,10 +14,7 @@ serverName: "SleepingServer, waiting for his prince..."
 #useNativeFiles: false
 
 # The port of your Java Edition server (0 to disable)
-serverPort: 25565
-
-# The port of your Bedrock Edition server (0 to disable or add `#`) 
-#bedrockPort: 19132
+serverPort: 0
 
 # Message shown when the server is off and someone is trying to connect
 loginMessage: "...Waking server up, come back in a minute..."
@@ -72,11 +69,15 @@ restartDelay: 5000
 # Discord WebHook
 # https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks
 # Setup a Discord WebHook to your channel
-# discordWebhookUrl: "https://discord.com/api/webhooks/REPLACE_ME"
+# discordWebhookUrl: "REPLACE_ME"
 # Avatar of the bot in the Discord WebHook
-# discordWebhookName: "SleepingServerStarter"
+# discordWebhookName: "REPLACE_ME"
 # Avatar of the bot in the Discord WebHook
 # discordWebhookAvatar: "https://raw.githubusercontent.com/vincss/mcsleepingserverstarter/master/docs/sleepingserver.png"
+# Message sent through discord webhook when the server is wake up
+# discordWebhookWokeUpMessage: "https://raw.githubusercontent.com/vincss/mcsleepingserverstarter/master/docs/sleepingserver.png"
+# Message sent through discord webhook when the server stopped
+# discordWebhookStopMessage: "https://raw.githubusercontent.com/vincss/mcsleepingserverstarter/master/docs/sleepingserver.png"
 
 # Only allow these player name on the white list to wake the server up
 # example ["vincss"]

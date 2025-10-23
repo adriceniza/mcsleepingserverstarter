@@ -27,8 +27,8 @@ export class SleepingDiscord {
       this.logger.info(`[Discord] Sending closing server message`);
     }
 
-    if (this.settings.discordWebhook?.url) {
-      const response = await fetch(this.settings.discordWebhook?.url, {
+    if (this.settings.discordWebhookUrl) {
+      const response = await fetch(this.settings.discordWebhookUrl, {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
@@ -42,23 +42,26 @@ export class SleepingDiscord {
   };
 
   onPlayerLogging = async (playerName: string) => {
+    const message = this.settings.discordWebhookWokeUpMessage || "woke up the server !";
     const content = {
       content: null,
       embeds: [
         {
-          title: `⏰ ${playerName} woke up the server !`,
+          title: `${playerName} ${message}`,
           color: 25344,
         },
       ],
-      username: this.settings.discordWebhook?.name || "SleepingServerStarter",
+      username: this.settings.discordWebhookName || "SleepingServerStarter",
       avatar_url:
-        this.settings.discordWebhook?.avatar ||
+        this.settings.discordWebhookAvatar ||
         "https://raw.githubusercontent.com/vincss/mcsleepingserverstarter/feature/discord_notification/docs/sleepingLogo.png",
     };
     await this.sendMessage(content, true);
   };
 
   onServerStop = async () => {
+    const message = this.settings.discordWebhookStopMessage || "💤 Server has shut down.";
+
     const content = {
       content: null,
       embeds: [
@@ -67,9 +70,9 @@ export class SleepingDiscord {
           color: 25344,
         },
       ],
-      username: this.settings.discordWebhook?.name || "SleepingServerStarter",
+      username: this.settings.discordWebhookName || "SleepingServerStarter",
       avatar_url:
-        this.settings.discordWebhook?.avatar ||
+        this.settings.discordWebhookAvatar ||
         "https://raw.githubusercontent.com/vincss/mcsleepingserverstarter/feature/discord_notification/docs/sleepingLogo.png",
     };
     await this.sendMessage(content, false);
