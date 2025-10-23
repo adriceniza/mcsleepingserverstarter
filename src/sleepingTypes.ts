@@ -25,10 +25,6 @@ export class Player {
     return new Player("A CliUser");
   }
 
-  static bedrock() {
-    return new Player("A BedRock Player");
-  }
-
   static web() {
     return new Player("A WebUser");
   }

@@ -1,6 +1,5 @@
 import { ChildProcess, execSync, spawn } from "child_process";
 import { type } from "os";
-import { SleepingBedrock } from "./sleepingBedrock";
 import { SleepingDiscord } from "./sleepingDiscord";
 import {
   getMinecraftDirectory,
@@ -29,7 +28,6 @@ export class SleepingContainer implements ISleepingServer {
 
   sleepingMcServer?: SleepingMcJava;
   mcProcess?: ChildProcess;
-  brServer?: SleepingBedrock;
   webServer?: SleepingWeb;
 
   discord?: SleepingDiscord;
@@ -69,15 +67,9 @@ export class SleepingContainer implements ISleepingServer {
       }
     }
 
-    if (this.settings.bedrockPort) {
-      this.brServer = new SleepingBedrock(
-        this.settings,
-        this.playerConnectionCallBack
-      );
-      await this.brServer?.init();
-    }
+    console.log(this.settings);
 
-    if (this.settings.discordWebhook?.url) {
+    if (this.settings.discordWebhookUrl) {
       this.discord = new SleepingDiscord(this.settings);
     }
   };
@@ -141,10 +133,6 @@ export class SleepingContainer implements ISleepingServer {
       await this.sleepingMcServer.close();
     }
 
-    if (this.brServer) {
-      await this.brServer.close();
-    }
-
     if (isThisTheEnd || this.settings.webStopOnStart) {
       if (this.webServer) {
         this.webServer.close();
@@ -171,7 +159,7 @@ export class SleepingContainer implements ISleepingServer {
     }
     this.isClosing = true;
 
-    if (this.settings.discordWebhook && this.discord) {
+    if (this.settings.discordWebhookUrl && this.discord) {
       await this.discord.onPlayerLogging(player.playerName);
     }
 
@@ -185,7 +173,7 @@ export class SleepingContainer implements ISleepingServer {
 
   startMinecraft = () => {
     const onMcClosed = async () => {
-      if (this.settings.discordWebhook && this.discord) {
+      if (this.settings.discordWebhookUrl && this.discord) {
         await this.discord.onServerStop();
       }
 
