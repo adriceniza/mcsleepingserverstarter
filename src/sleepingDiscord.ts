@@ -41,6 +41,24 @@ export class SleepingDiscord {
     }
   };
 
+  onInit = async () => {
+    const message = this.settings.discordWebhookInitMessage || "Server is starting.";
+    const content = {
+      content: null,
+      embeds: [
+        {
+          title: message,
+          color: 25344,
+        },
+      ],
+      username: this.settings.discordWebhookName || "SleepingServerStarter",
+      avatar_url:
+        this.settings.discordWebhookAvatar ||
+        "https://raw.githubusercontent.com/vincss/mcsleepingserverstarter/feature/discord_notification/docs/sleepingLogo.png",
+    };
+    await this.sendMessage(content, true);
+  };
+
   onPlayerLogging = async (playerName: string) => {
     const message = this.settings.discordWebhookWokeUpMessage || "woke up the server !";
     const content = {

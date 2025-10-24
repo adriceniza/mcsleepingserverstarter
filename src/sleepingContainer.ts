@@ -69,6 +69,7 @@ export class SleepingContainer implements ISleepingServer {
 
     if (this.settings.discordWebhookUrl) {
       this.discord = new SleepingDiscord(this.settings);
+      this.discord.onInit();
     }
   };
 

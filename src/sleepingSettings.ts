@@ -40,6 +40,7 @@ export type Settings = {
   discordWebhookAvatar?: string;
   discordWebhookWokeUpMessage?: string;
   discordWebhookStopMessage?: string;
+  discordWebhookInitMessage?: string;
   blackListedAddress?: string[];
   whiteListedNames?: string[];
   useWhitelistFile: boolean;
